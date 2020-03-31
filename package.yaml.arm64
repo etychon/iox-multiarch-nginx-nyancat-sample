@@ -1,0 +1,25 @@
+descriptor-schema-version: "2.2"
+info:
+  name: iox-aarch64-nginx-nyancat-sample
+  version: latest
+app:
+  cpuarch: aarch64
+  env:
+    NGINX_VERSION: 1.17.5
+    NJS_VERSION: 0.3.6
+    PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    PKG_RELEASE: 1~buster
+  resources:
+    network:
+    - interface-name: eth0
+      ports:
+        tcp:
+        - "80"
+    profile: c1.tiny
+  startup:
+    rootfs: rootfs.tar
+    target:
+    - nginx
+    - -g
+    - daemon off;
+  type: docker

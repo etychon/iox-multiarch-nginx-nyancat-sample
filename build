@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# Let's build for separate CPU architecture (AMD64 and ARM64)
+for arch in amd64 arm64  ; do 
+    # Build the Docker image for the target platform using buildx (experimental feature)
+    docker buildx build \
+    --platform $arch \
+    --output type=docker \
+    --tag iox-${arch}-nginx-nyancat-sample .
+    # We use a separate package.yaml for each platform. This could be automated with sed.
+    cp package.yaml.${arch} package.yaml
+    # Package the IOx Application using Cisco ioxclient
+    ioxclient docker package iox-${arch}-nginx-nyancat-sample . -n iox-${arch}-nginx-nyancat-sample --use-targz
+done
+
