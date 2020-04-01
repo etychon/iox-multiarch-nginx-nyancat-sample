@@ -1,6 +1,7 @@
 descriptor-schema-version: "2.2"
 info:
   name: iox-aarch64-nginx-nyancat-sample
+  description: nginx on port 80 for ARM-based platforms
   version: latest
 app:
   cpuarch: aarch64
@@ -18,8 +19,5 @@ app:
     profile: c1.tiny
   startup:
     rootfs: rootfs.tar
-    target:
-    - nginx
-    - -g
-    - daemon off;
+    target: ["/bin/sh", "/loop.sh"]
   type: docker

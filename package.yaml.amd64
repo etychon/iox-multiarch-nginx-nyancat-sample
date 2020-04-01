@@ -1,6 +1,7 @@
 descriptor-schema-version: "2.2"
 info:
   name: iox-x86-nginx-sample
+  description: nginx on port 80 for x86-based platforms
   version: latest
 app:
   cpuarch: x86_64
@@ -15,11 +16,8 @@ app:
       ports:
         tcp:
         - "80"
-    profile: c1.tiny
+    profile: c1.small
   startup:
     rootfs: rootfs.tar
-    target:
-    - nginx
-    - -g
-    - daemon off;
+    target: ["/bin/sh", "/loop.sh"]
   type: docker
