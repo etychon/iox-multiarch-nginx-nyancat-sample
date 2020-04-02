@@ -19,5 +19,5 @@ app:
     profile: c1.tiny
   startup:
     rootfs: rootfs.tar
-    target: ["/bin/sh", "/loop.sh"]
+    target: ["/bin/sh", "/root/loop.sh"]
   type: docker
